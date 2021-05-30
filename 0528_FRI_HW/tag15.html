@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>tag1</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    .firstrow {
+      background-color: gray;
+      text-align: center;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <!-- tr : 행 -->
+    <tr class="firstrow">
+      <td>형식</td>
+      <td>구성</td>
+      <td>내용</td>
+    </tr>
+
+    <tr>
+      <td rowspan="6">&lt;TABLE&gt;</td>
+      <td>&lt;TABLE BORDER=&gt;...&LT;/TABLE&GT;</td>
+      <td>표의 전체 형식을 나타냅니다.
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;TR&gt;&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;</td>
+      <td>표 내부에 들어갈 형식을 정의합니다.
+
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;TD COLSPAN=n&GT;</td>
+      <td>가로칸을 n만큼 합쳐줍니다.
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;TD ROWSPAN=n&GT;</td>
+      <td>세로칸을 n만큼 합쳐줍니다.
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;TD ALIGN=...&GT;</td>
+      <td>표안의 좌우 정렬 방식을 정의합니다.
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;TD VALIGN=...&GT;</td>
+      <td>표안의 상하 정렬 방식을 정의합니다.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
