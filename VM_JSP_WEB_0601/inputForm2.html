@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>inputForm2</title>
+</head>
+
+<body>
+<h1>성적 조회 후 정정/삭제</h1>
+<form action='./insertDB.jsp' method='get' target='main2'>
+	<input type='text' name='name' placeholder='" + name + "'><br>
+		out.println("학번&nbsp;<input type='text' name='id' placeholder='" + id + "'><br>");
+		out.println("국어&nbsp;<input type='text' name='kor' placeholder='" + kor + "'><br>");
+		out.println("영어&nbsp;<input type='text' name='eng' placeholder='" + eng + "'><br>");
+		out.println("수학&nbsp;<input type='text' name='mat' placeholder='" + mat + "'><br><br>");
+		out.println("&nbsp;&nbsp;&nbsp;<input type='submit' value='데이터 세팅'>");
+		out.println("</form>");
+</body>
+</html>
