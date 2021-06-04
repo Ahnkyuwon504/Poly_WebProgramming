@@ -42,6 +42,23 @@
 		});
     });  
 </script>
+<style>
+	button {
+		background-color: green;
+		width: 75px;
+	}
+	
+	table {
+		border: 1px solid black;
+		border-collapse: collapse;
+		width : 80%;
+	}
+	
+	tr {
+		border-bottom: 1px solid black;
+	}
+	
+</style>
 </head>
 
 <body>
@@ -51,7 +68,7 @@
 	Statement stmt = conn.createStatement();
 	
 %>
-	<table cellspacing=1 width=600 border=1>
+	<table>
 <%
 try {
 	ResultSet rset = stmt.executeQuery("select * from hubo;");
@@ -59,17 +76,15 @@ try {
 	while (rset.next()) {
 %>
 		<tr>
-			<td width=50><p align=center>기호번호 : <%=rset.getInt(1)%></p></td>
-			<td width=50><p align=center>후보명 : <%=rset.getString(2)%></p></td>
-			<td width=50>
-				<p align=center>
-					<form id='delete<%=rset.getInt(1)%>' action='./A02.jsp' method='post' target='main'>
-					<input type='hidden' name='kiho_key' value='<%=rset.getInt(1)%>'/>
-					<input type='hidden' name='name_key' value='<%=rset.getString(2)%>'/>
-					</form>
-					<button href='#' onclick='javascript:$("#delete<%=rset.getInt(1)%>").submit()'>삭제</button>
-				</p>
-			</td>
+			<td width=50><p>기호번호 : <%=rset.getInt(1)%></p></td>
+			<td width=50><p>후보명 : <%=rset.getString(2)%></p></td>
+			<td width=50 style='text-align:right;'><p>
+				<form id='delete<%=rset.getInt(1)%>' action='./A02.jsp' method='post' target='main'>
+				<input type='hidden' name='kiho_key' value='<%=rset.getInt(1)%>'/>
+				<input type='hidden' name='name_key' value='<%=rset.getString(2)%>'/>
+				</form>
+				<button href='#' onclick='javascript:$("#delete<%=rset.getInt(1)%>").submit()'>삭제</button>
+			</p></td>
 		</tr>
 <%
 	}
@@ -85,10 +100,10 @@ try {
 %>
 		<form id='insert' action='./A03.jsp' method='post' target='main'>
 		<tr>
-			<td width=50><p align=center>기호번호 : <input type='text' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name='kiho_insert_key'></p></td>
-			<td width=50><p align=center>후보명 : <input type='text' name='name_insert_key' id='inputname'></p></td>
-			<td width=50><p align=center>
-			<button href='#' onclick='javascript:$("#insert").submit()'>추가</button>
+			<td width=50><p>기호번호 : <input style='width:30px;' type='text' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name='kiho_insert_key'></p></td>
+			<td width=50><p>후보명 : <input type='text' name='name_insert_key' id='inputname'></p></td>
+			<td width=50 style='text-align:right;'><p>
+				<button href='#' onclick='javascript:$("#insert").submit()'>추가</button>
 			</p></td>
 		</tr>
 		</form>
