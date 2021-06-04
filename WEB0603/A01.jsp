@@ -76,8 +76,8 @@ try {
 	while (rset.next()) {
 %>
 		<tr>
-			<td width=50><p>기호번호 : <%=rset.getInt(1)%></p></td>
-			<td width=50><p>후보명 : <%=rset.getString(2)%></p></td>
+			<td width=100><p>기호번호 : <%=rset.getInt(1)%></p></td>
+			<td width=250><p>후보명 : <%=rset.getString(2)%></p></td>
 			<td width=50 style='text-align:right;'><p>
 				<form id='delete<%=rset.getInt(1)%>' action='./A02.jsp' method='post' target='main'>
 				<input type='hidden' name='kiho_key' value='<%=rset.getInt(1)%>'/>
@@ -100,8 +100,8 @@ try {
 %>
 		<form id='insert' action='./A03.jsp' method='post' target='main'>
 		<tr>
-			<td width=50><p>기호번호 : <input style='width:30px;' type='text' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name='kiho_insert_key'></p></td>
-			<td width=50><p>후보명 : <input type='text' name='name_insert_key' id='inputname'></p></td>
+			<td width=100><p>기호번호 : <input style='width:80px;' type='text' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name='kiho_insert_key'></p></td>
+			<td width=250><p>후보명 : <input type='text' name='name_insert_key' id='inputname'></p></td>
 			<td width=50 style='text-align:right;'><p>
 				<button href='#' onclick='javascript:$("#insert").submit()'>추가</button>
 			</p></td>
