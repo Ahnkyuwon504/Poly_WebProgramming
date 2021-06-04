@@ -28,66 +28,55 @@ th, td {
 	Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.23.20:33060/kopoctc", "root", "kopoctc");
 	Statement stmt = conn.createStatement();
 %>
-<h1>후보 별 득표율</h1><br>
 <%
 	try {
-		String kiho = request.getParameter("kiho_key");
-		out.println(kiho);
-
-		
 		request.setCharacterEncoding("utf-8");
 		String QueryTxt;
 		ResultSet rset;
 		
-		QueryTxt = "select age, count(age)/(select count(*) from tupyo where kiho=" + kiho + ") from tupyo where kiho=" + kiho + " group by age;";
+		String kiho = request.getParameter("kiho_key");
+		String name = "";
+		
+		QueryTxt = "select name from hubo where kiho=" + kiho + ";";
 		rset = stmt.executeQuery(QueryTxt);
 		
-		if (!rset.isBeforeFirst() ) {    
-			out.println("아직 등록된 후보가 없거나, 또는 투표가 실시되지 않았습니다.<br>"); 
-			out.println("상단의 탭을 참조하십시오."); 
-			return;
-		}
-		
-		
-
-
-
-
-
-
-
-		
-		QueryTxt = " select a.kiho, b.name, count(a.kiho), count(a.kiho)*100/(select count(*) from tupyo)" +
-						  " from tupyo as a, hubo as b where a.kiho=b.kiho group by a.kiho;";
-		
-		rset = stmt.executeQuery(QueryTxt);
-		
-		if (!rset.isBeforeFirst() ) {    
-			out.println("아직 등록된 후보가 없거나, 또는 투표가 실시되지 않았습니다.<br>"); 
-			out.println("상단의 탭을 참조하십시오."); 
-			return;
-		}
-%>
-<table>
-<%
-		int nullcnt = 0;
-	
 		while (rset.next()) {
-%>
-		<tr>
-			<td width=50><p align=center>기호번호 : <%=rset.getInt(1)%></p></td>
-			<td width=50><p align=center>
-				<form id='onehubo<%=rset.getInt(1)%>' action='./C02.jsp' method='post' target='main'>
-				<input type='hidden' name='kiho_key' value='<%=rset.getInt(1)%>'/>
-				</form>
-				<a href='javascript:$("#onehubo<%=rset.getInt(1)%>").submit()'>후보명 : <%=rset.getString(2)%></a>
-			</p></td>
-			<td width=50><p align=center>득표율 : <%=rset.getInt(3)%>(<%=rset.getInt(4)%>%)</p></td>
-		</tr>
-<%
+			name = rset.getString(1);
 		}
+%>
+<h1><%=kiho%>번 <%=name%> 후보 득표성향 분석</h1><br>
+<table>
+<%			
+		int lengthOfbar = 0;
+
+		for (int i = 1; i <= 9; i++) {
 		
-		
+			QueryTxt = "select count(*), count(*) * 100 / (select count(*) from tupyo where kiho=" + kiho + ") from tupyo where kiho=" + kiho + " and age=" + i + ";";
+			rset = stmt.executeQuery(QueryTxt);
+			
+			while (rset.next()) {
+				
+%>
+				<tr>
+<%				
+				if (rset.getInt(1) == 0) {   
+					lengthOfbar = 0;
+%>
+				<td width=50><p align=center><%=i%>0대</p></td>
+				<td width=50><p align=center>0(0%)</p></td>	
+<%				
+				} else {
+					lengthOfbar = rset.getInt(1);
+%>				
+				<td width=50><p align=center><%=i%>0대</p></td>
+				<td width=50><p align=center><%=rset.getInt(1)%>(<%=rset.getInt(2)%>%)</p></td>	
+<%				
+				}
+%>
+				</tr>
+<%
+			}
+		}
 		
 		rset.close();
 		stmt.close();
@@ -102,6 +91,7 @@ th, td {
 		out.println("숫자가 아닌 수를 기입하셨는지 혹은 공란이 존재하는지 확인 바랍니다..<br>");
 	} catch (Exception e) {
 		out.println("모든 항목을 기입해 주십시오");
+		out.println(e);
 	}
 %>
 </table>

@@ -17,12 +17,19 @@
 	Statement stmt = conn.createStatement();
 	
 %>
-	<form action='./B02.jsp' method='post' target='main'>
-	<select name='kiho_key'>
 <%
 try {
 	ResultSet rset = stmt.executeQuery("select * from hubo;");
 	
+	if (!rset.isBeforeFirst() ) {    
+		out.println("아직 등록된 후보가 없습니다.<br>"); 
+		out.println("상단의 탭을 참조해 후보를 등록해 주십시오."); 
+		return;
+	}
+%>
+	<form action='./B02.jsp' method='post' target='main'>
+	<select name='kiho_key'>
+<%	
 	while (rset.next()) {
 %>
 		<option value='<%=rset.getInt(1)%>'><%=rset.getInt(1)%>번 <%=rset.getString(2)%></option>
@@ -32,9 +39,9 @@ try {
 	rset.close();
 	stmt.close();
 	conn.close();
-} catch (Exception e) {
-	out.println(e);
-}
+	} catch (Exception e) {
+		out.println(e);
+	}
 %>
 	</select>
 	<select name='age_key'>

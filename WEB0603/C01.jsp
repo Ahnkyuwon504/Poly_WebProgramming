@@ -42,13 +42,19 @@ th, td {
 		rset = stmt.executeQuery(QueryTxt);
 		
 		if (!rset.isBeforeFirst() ) {    
-			out.println("아직 등록된 후보가 없거나, 또는 투표가 실시되지 않았습니다.<br>"); 
-			out.println("상단의 탭을 참조하십시오."); 
+			out.println("아직 등록된 후보가 없습니다.<br>"); 
+			out.println("상단의 탭을 참조해 후보를 등록해 주십시오."); 
 			return;
 		}
 		
 		while (rset.next()) {
 			kihoArrayList.add(rset.getInt(1));
+		}
+		
+		if (kihoArrayList.size() == 1) {
+%>
+현재 단일후보입니다.<br>
+<%			
 		}
 		
 		for (int i = 0 ; i < kihoArrayList.size(); i++) {
@@ -61,19 +67,23 @@ th, td {
 			}
 		}
 		
-		out.println(kihoArrayList.size());
+		if (nullHuboArrayList.size() == kihoArrayList.size()) {
+%>
+실시된 투표가 0건입니다.<br><br>
+<%			
+		}
 		
 		int count = 0;
-		
+%>
+<table>
+<%
 		for (int i = 0; i < kihoArrayList.size(); i++) {
-			out.println("실행" + i);
 			QueryTxt = " select a.kiho, b.name, count(a.kiho), count(a.kiho)*100/(select count(*) from tupyo)" +
 						  " from tupyo as a, hubo as b where a.kiho=b.kiho and b.kiho=" + kihoArrayList.get(i) + " group by a.kiho;";
 		
 			rset = stmt.executeQuery(QueryTxt);
 		
 			if (!rset.isBeforeFirst() ) {
-						out.println("에러3" + i);
 				QueryTxt = "select * from hubo where  kiho=" + 	nullHuboArrayList.get(count) + ";";
 				rset = stmt.executeQuery(QueryTxt);
 			
