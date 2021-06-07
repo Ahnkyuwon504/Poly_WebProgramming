@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>index</title>
 </head>
 <body>
   <h1>Hello World</h1>
@@ -75,6 +75,58 @@
   itemSet.add(person2);
   out.print("HastSet으로 person1 세 개, person2 한 개 : " + itemSet + "<br>");
   %>
+  
+  <h1>jsp useBean 사용</h1>
+  
+  
+  <jsp:useBean id="person3" class="com.ahnkyuweb0607.jsp.Person" scope="page"/>
+  
+  
+  <%
+  out.print(person3);
+  %>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
