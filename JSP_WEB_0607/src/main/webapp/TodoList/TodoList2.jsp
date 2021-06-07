@@ -11,6 +11,20 @@
 <link rel="stylesheet" href="Form.css">
 <link rel="stylesheet" href="TodoItem.css">
 <link rel="stylesheet" href="TodoListTemplate.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  function getFalse() {
+    alert("헤헤");
+    $('.todo-text checked').removeClass('todo-text checked');
+    $('.todo-text checked').addClass('todo-text false');
+  }
+  
+  function getTrue() {
+    alert("헤하하");
+    $('.todo-text checked').removeClass('todo-text false');
+    $('.todo-text checked').addClass('todo-text checked');
+  }
+</script>
 </head>
 <body>
 
@@ -75,13 +89,13 @@ int numberOftoDo = toDoList.size();
 
 for (int i = 0; i < numberOftoDo; i++) {
 %>
-        <div class="todo-item" onclick="">
+        <div class="todo-item">
           <div class="remove">x</div>
               
   <%
   if ( toDoList.get(i).isTodoCheck() == true ) {
   %>
-          <div class="todo-text checked">
+          <div class="todo-text checked"  onclick="getFalse()">
             <div> 
               <% out.print(toDoList.get(i).getTodoName()); %>
             </div>
@@ -90,7 +104,7 @@ for (int i = 0; i < numberOftoDo; i++) {
   <% 
   } else {
   %>
-          <div class="todo-text false">
+          <div class="todo-text false"  onclick="getTrue()">
             <div>
                <% out.print(toDoList.get(i).getTodoName()); %>
             </div>
