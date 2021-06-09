@@ -1,34 +1,41 @@
 package com.ahnkyuweb0607.jsp;
 
-public class ToDo {
-    private String todoName;
-    private boolean todoCheck;
+import java.io.Serializable;
+
+public class ToDo implements Serializable {
+    private String title;   // 암묵적으로 null
+    private boolean isDone; // 암묵적으로 false
     
-    public ToDo(String todoName, boolean todoCheck) {
-        super();
-        this.todoName = todoName;
-        this.todoCheck = todoCheck;
+    public ToDo() {
+        
     }
     
-    public String getTodoName() {
-        return todoName;
+    public ToDo(String title) {
+        this.title = title;
     }
-    public void setTodoName(String todoName) {
-        this.todoName = todoName;
+
+    public String getTitle() {
+        return title;
     }
-    public boolean isTodoCheck() {
-        return todoCheck;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public void setTodoCheck(boolean todoCheck) {
-        this.todoCheck = todoCheck;
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (todoCheck ? 1231 : 1237);
-        result = prime * result + ((todoName == null) ? 0 : todoName.hashCode());
+        result = prime * result + (isDone ? 1231 : 1237);
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
     }
 
@@ -41,18 +48,18 @@ public class ToDo {
         if (getClass() != obj.getClass())
             return false;
         ToDo other = (ToDo) obj;
-        if (todoCheck != other.todoCheck)
+        if (isDone != other.isDone)
             return false;
-        if (todoName == null) {
-            if (other.todoName != null)
+        if (title == null) {
+            if (other.title != null)
                 return false;
-        } else if (!todoName.equals(other.todoName))
+        } else if (!title.equals(other.title))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "ToDo [todoName=" + todoName + ", todoCheck=" + todoCheck + "]";
+        return "ToDo [title=" + title + ", isDone=" + isDone + "]";
     }
 }
