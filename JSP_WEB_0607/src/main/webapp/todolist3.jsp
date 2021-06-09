@@ -13,7 +13,9 @@
     color : red;
   }
 </style>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 <script>
   function toggle(id, isDone) {
     
@@ -33,14 +35,13 @@
     
     $.ajax({
       type: "POST"
-      , url: "TodoController"
-      , data: {todo:111111111111}
+      , url: "addTodo"
+      , data: {id:id, done:isDone}
       , success:function(data) {
-        alert("성공");
+        location.href = "todolist3.jsp";
       }
       , error:function(data) {
         alert(data);
-        console.log(data);
       }
     });
     
