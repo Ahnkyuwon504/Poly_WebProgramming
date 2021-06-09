@@ -27,4 +27,22 @@ public class TodoRepository {               // TodoRepository 는 객체를 생�
     public void addToDo(String todo) {
         todos.add(new ToDo(todo));
     }
+    
+    public void toggle(long id, boolean currenDone) {
+        ToDo result = null;
+        
+        for (ToDo todo: todos) {
+            if (todo.getId() == id) {
+                result = todo;
+                break;
+            }
+        }
+        
+//        ToDo result2 = todos.stream()
+//                .filter((todo) -> todo.getId() == id)
+//                .findFirst()
+//                .get();
+        result.setDone(!currenDone);
+    }
+    
 }

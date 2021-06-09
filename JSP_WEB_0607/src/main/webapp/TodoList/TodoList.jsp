@@ -28,11 +28,11 @@
   if (toDoName != null && toDoCheck != null && !toDoName.isEmpty()) {
       boolean dupli = false;
       
-      for (ToDo todo : toDoList) {
+      /* for (ToDo todo : toDoList) {
           if (todo.getTodoName().equals(toDoName)) dupli = true;
       }
       
-      if (dupli == false) toDoList.add(new ToDo(toDoName, toDoCheck));
+      if (dupli == false) toDoList.add(new ToDo(toDoName, toDoCheck)); */
   }
   
   session.setAttribute("toDoList_session", toDoList);

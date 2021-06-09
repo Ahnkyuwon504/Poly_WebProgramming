@@ -1,16 +1,27 @@
 package com.ahnkyuweb0607.jsp;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToDo implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    private static final AtomicInteger counter = new AtomicInteger(0);  // 멤버변수가 아님...
+    
+    private long id;
     private String title;   // 암묵적으로 null
     private boolean isDone; // 암묵적으로 false
     
     public ToDo() {
-        
+        id = counter.getAndIncrement();
     }
     
     public ToDo(String title) {
+        // 위에꺼 복붙하면 안됨...
+        this();             // 기본생성자 호출, super()는 interface를 갖다쓰기때문에 안됨...부모 생성자없어.
         this.title = title;
     }
 
@@ -28,6 +39,14 @@ public class ToDo implements Serializable {
 
     public void setDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
